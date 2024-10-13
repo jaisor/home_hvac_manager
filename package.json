@@ -1,0 +1,16 @@
+{
+  "name": "home_hvac_manager",
+  "version": "1.0.0",
+  "description": "Home HVAC home_hvac_manager",
+  "author": "Jordan Marinov <jaisor@gmail.com>",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@picocss/pico": "^2.0.6",
+    "express": "^4.21.1",
+    "home_hvac_manager": "file:",
+    "mqtt": "^4.3.7"
+  }
+}
