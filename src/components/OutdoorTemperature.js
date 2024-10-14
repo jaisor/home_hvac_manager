@@ -1,7 +1,7 @@
 import React from "react";
 
 const handleOpenWeatherMapAPI = async () => {
-  const url = "api.openweathermap.org/data/2.5/weather?zip=92807,us&units=imperial&APPID=09770a23e80a02f63266421574cbfc6d";
+  const url = "api.openweathermap.org/da";
   const options = {
     method: "GET",
     headers: {
