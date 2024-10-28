@@ -1,27 +1,31 @@
-import React from "react";
-
-const handleOpenWeatherMapAPI = async () => {
-  const url = "api.openweathermap.org/da";
-  const options = {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json;charset=UTF-8",
-    }
-  };
-  const response = await fetch(url, options);
-  const data = await response.json();
-  console.log(data);
-}
+import React, { useState, useEffect } from "react";
 
 export default function OutdoorTemperature() {
+
+  const [weather, setWeather] = useState(null);
+
+  useEffect(() => {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?zip=92807,us&units=imperial&appid=${process.env.OPENWEATHERMAP_API_KEY}`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json;charset=UTF-8"
+      },
+    }).then((response) => response.json())
+      .then((data) => {
+        setWeather(data.main);
+        console.log(data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
   return (
-    <div class="grid">
+    <div>
       <div>
         <b>Weather</b>
-        {handleOpenWeatherMapAPI()}
+        
       </div>
       <div>Yard Sensor</div>
     </div>
-  );
+  )
 }

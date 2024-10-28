@@ -9,6 +9,8 @@
     "build": "webpack --mode production"
   },
   "dependencies": {
+    "dotenv-webpack": "^8.1.0",
+    "home_hvac_manager": "file:",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "use-local-storage-state": "^19.4.1",
