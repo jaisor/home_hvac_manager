@@ -1,14 +1,29 @@
-import express, { json } from 'express';
-import "./styles/main.scss";
+import dotenv from 'dotenv'
+import logger from 'winston'
+import express, { json } from 'express'
 
-const app = express();
+logger.configure({
+  level: process.env.LOG_LEVEL || 'info',
+  format: logger.format.cli(),
+  transports: [new logger.transports.Console()],
+})
 
-app.use(json())
+// Config
+dotenv.config()
 
-const PORT = process.env.PORT || 3000;
+const server = express()
 
-app.get('/', async (req, res) => {
+//server.use(json())
+
+server.set('view engine', 'ejs');
+//server.use(express.static(__dirname + '/public'));
+server.get('/', function(req, res) {
+  res.render('pages/index');
+});
+
+server.get('/', async (req, res) => {
     res.json({ status: true, message: "Our node.js app works" })
 });
 
-app.listen(PORT, () => console.log(`App listening at port ${PORT}`));
+const port = process.env.PORT || 8080
+server.listen(port, () => logger.info(`Server listening to ${port}`))
