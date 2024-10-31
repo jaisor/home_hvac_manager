@@ -1,8 +1,33 @@
-<meta charset="UTF-8">
-<title>EJS Is Fun</title>
-
-<!-- CSS (load bootstrap from a CDN) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
-<style>
-  body { padding-top:50px; }
-</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="css/pico.min.css" />
+    <title>Home HVAC Manager</title>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        document.querySelector("form").addEventListener("submit", function (event) {
+          var data = this;
+          var submit = data.querySelector("button[type='submit']");
+          var d = data.getAttribute("delay");
+          submit.setAttribute("aria-busy", true);
+          submit.setAttribute("disabled", "");
+          submit.innerHTML = "";
+          fetch(data.getAttribute("action"), {
+            method: data.getAttribute("method"),
+            body: new FormData(data)
+          }).then(res=>res.text())
+            .then(function (data) {
+              console.log("Server response: " + data);
+              console.log("Reloading page after " + d + " ms");
+              setTimeout(function () {
+                location.reload(true); 
+              }, d);
+            })
+            .catch((e) => {
+              console.error(e);
+              location.reload(true); 
+            });
+          event.preventDefault();
+        });
+      });
+    </script>

@@ -9,7 +9,6 @@
     "start": "nodemon --experimental-modules --es-module-specifier-resolution=node src/index.js"
   },
   "dependencies": {
-    "@picocss/pico": "^2.0.6",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.21.1",

@@ -1,24 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <%- include('../partials/head'); %>
-</head>
-<body class="container">
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+  <body>
+    <header class="container">
+      <%- include('../partials/header'); %>
+    </header>
+    <main class="container">
 
-<header>
-  <%- include('../partials/header'); %>
-</header>
+      <h3>Device Settings</h3>
+      <form method='POST' action='/device' enctype='application/x-www-form-urlencoded' delay='5000'>
+        <fieldset>
+          <label>
+            LED enabled
+            <input name="enableLED" type="checkbox" role="switch" checked /><br/>
+            <sub><small>disable to reduce light noise in bedrooms</small></sub>
+          </label>
+          <br/>
+          <label>
+            Device name
+            <input type='text' id='deviceName' name='deviceName' value='ESP32MHVAC'>
+          </label>
+          <label>
+            Temperature units
+            <select name='tempUnit' id='tempUnit'>
+              <option selected value='0'>Celsius</option>      <option  value='1'>Fahrenheit</option>
+            </select>
+          </label>
+          <label>MQTT server
+            <input type='text' id='mqttServer' name='mqttServer' value='server.lan'>
+          </label>
+          <label>MQTT port
+            <input type='text' id='mqttPort' name='mqttPort' value='1883'>
+          </label>
+          <label>
+            MQTT topic
+            <input type='text' id='mqttTopic' name='mqttTopic' value='ac/dev32'>
+          </label>
+          <label>
+            Battery volt measurement divider
+            <input type='text' id='battVoltsDivider' name='battVoltsDivider' value='0.00'>
+          </label>
+        </fieldset>
+        <button type='submit' value='Submit'>Submit...</button>
+      </form>
 
-<main>
-  <div class="jumbotron">
-    <h1>This is great</h1>
-    <p>Welcome to templating using EJS</p>
-  </div>
-</main>
-
-<footer>
-  <%- include('../partials/footer'); %>
-</footer>
-
-</body>
+    </main>
+    <footer class="container">
+      <%- include('../partials/footer'); %>
+    </footer>
+  </body>
 </html>
